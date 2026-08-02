@@ -1,12 +1,12 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 15;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
+static const char *fonts[]          = { "JetBrainsMono Nerd Font:size=9" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#2A2F2E";
 static const char col_gray2[]       = "#E7EEF0";
@@ -15,8 +15,8 @@ static const char col_gray4[]       = "#FFFFFF";
 static const char col_cyan[]        = "#8EA5AE";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeNorm] = { "#F4F6F7", "#2A2F2E", "#5E6C73" },
+	[SchemeSel]  = { "#FFFFFF", "#2A2F2E",  "#8EA5AE"  },
 };
 
 /* tagging */
@@ -60,16 +60,35 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
 
 /* Custom commands */
 static const char *roficmd[] = { "rofi","-show","drun",NULL }; 
+// screenshot 
+static const char *ss_full[] = { "screenshot.sh","full", NULL };
+static const char *ss_select[] = {"screenshot.sh","select", NULL }; 
+// brightness
+static const char *bri_inc[] = {"brightness.sh","up", NULL }; 
+static const char *bri_dec[] = {"brightness.sh","down", NULL }; 
+// volume 
+static const char *vol_inc[] = {"volume.sh","up", NULL }; 
+static const char *vol_dec[] = {"volume.sh","down", NULL }; 
+static const char *vol_mute[] = {"volume.sh","mute", NULL }; 
+
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = roficmd } },
+	{ 0,                            XK_Print,  spawn,          {.v = ss_full } },
+	{ 0|ShiftMask,                  XK_Print,  spawn,          {.v = ss_select } },
+	{ 0,                            XK_F6,     spawn,          {.v = bri_inc } },
+	{ 0,                            XK_F5,     spawn,          {.v = bri_dec } },
+	{ 0,                            XK_F3,     spawn,          {.v = vol_inc } },
+	{ 0,                            XK_F2,     spawn,          {.v = vol_dec } },
+	{ 0,                            XK_F1,     spawn,          {.v = vol_mute } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
