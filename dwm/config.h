@@ -75,10 +75,13 @@ static const char *vol_inc[] = {"volume.sh","up", NULL };
 static const char *vol_dec[] = {"volume.sh","down", NULL }; 
 static const char *vol_mute[] = {"volume.sh","mute", NULL }; 
 
+// rofi power menu
+static const char *powermenu[] = {"powermenu.sh", NULL }; 
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = roficmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = powermenu } },
 	{ 0,                            XK_Print,  spawn,          {.v = ss_full } },
 	{ 0|ShiftMask,                  XK_Print,  spawn,          {.v = ss_select } },
 	{ 0,                            XK_F6,     spawn,          {.v = bri_inc } },
