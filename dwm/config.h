@@ -74,14 +74,16 @@ static const char *bri_dec[] = {"brightness.sh","down", NULL };
 static const char *vol_inc[] = {"volume.sh","up", NULL }; 
 static const char *vol_dec[] = {"volume.sh","down", NULL }; 
 static const char *vol_mute[] = {"volume.sh","mute", NULL }; 
-
 // rofi power menu
 static const char *powermenu[] = {"powermenu.sh", NULL }; 
+// bluetooth
+static const char *bluetooth[] = {"kitty","-e","bluetui", NULL }; 
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = roficmd } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = powermenu } },
+	{ MODKEY,                       XK_bracketleft,      spawn,{.v = bluetooth } },
 	{ 0,                            XK_Print,  spawn,          {.v = ss_full } },
 	{ 0|ShiftMask,                  XK_Print,  spawn,          {.v = ss_select } },
 	{ 0,                            XK_F6,     spawn,          {.v = bri_inc } },
