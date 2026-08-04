@@ -66,11 +66,10 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ cpu_perc,      "CPU %s% | ",      NULL},
-	{ ram_perc,      "RAM %s% | ",      NULL},
-	{ cat,           "BRI %s | ",       "/sys/class/backlight/nvidia_0/brightness" }, 
-	{ run_command,   "%s ",             "cat /sys/class/power_supply/BAT1/status"},
-	{ battery_perc,  "%s% | ",          "BAT1"},
-	{ run_command,   "%s | ",           "wpctl get-volume @DEFAULT_SINK@"},
-	{ datetime,      "%s",              "%F %T" },
+	{ run_command,   "%s  ",           "bluetooth-display.sh" }, 
+	{ run_command,   "%s NET  ",           "wifi-display.sh" }, 
+	{ run_command,   "%s  ",           "brightness-display.sh" }, 
+	{ run_command,   "%s  ",           "battery-display.sh"},
+	{ run_command,   "%s  ",           "volume-display.sh"},
+	{ run_command,   "%s ",              "date +'%a %d %b %l:%M %p'"},
 };
